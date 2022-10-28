@@ -3,11 +3,13 @@ package myller.tsi.daw.tp1.controller;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import myller.tsi.daw.tp1.logica.Logica;
 
+@WebServlet("/controladora")
 public class Controladora extends HttpServlet {
 	
 	@Override
@@ -27,7 +29,7 @@ public class Controladora extends HttpServlet {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
+
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 }

@@ -19,7 +19,7 @@ public class UsuarioDAO {
 	}
 	
 	public void adiciona(Usuario usuario) {
-		String sql = "insert into usuario (usuario, senha, perfil) values (?, ?, ?)";
+		String sql = "insert into usuario (nome, senha, perfil) values (?, ?, ?)";
 		
 		try (PreparedStatement stmt = connection.prepareStatement(sql)){
 			stmt.setString(1, usuario.getNome());
@@ -32,7 +32,7 @@ public class UsuarioDAO {
 	}
 	
 	public void altera(Usuario usuario) {
-		String sql = "update usuario set usuario=?, senha=? where idusuario=?";
+		String sql = "update usuario set nome=?, senha=?, perfil=? where idusuario=?";
 		
 		try (PreparedStatement stmt = connection.prepareStatement(sql)){
 			stmt.setString(1, usuario.getNome());
@@ -57,8 +57,9 @@ public class UsuarioDAO {
 	public Usuario rsToUsuario(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
 		usuario.setIdUsuario(rs.getLong("idusuario"));
-		usuario.setNome(rs.getString("usuario"));
+		usuario.setNome(rs.getString("nome"));
 		usuario.setSenha(rs.getString("senha"));
+		usuario.setPerfil(rs.getString("perfil"));
 		
 		return usuario;
 	}
@@ -78,7 +79,7 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario validaCredencial(String usuario, String senha) {
-		String sql = "select * from usuario where usuario=? and senha=?";
+		String sql = "select * from usuario where nome=? and senha=?";
 		Usuario user = null;
 		try (PreparedStatement stmt = connection.prepareStatement(sql)){
 			stmt.setString(1, usuario);
