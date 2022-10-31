@@ -21,14 +21,19 @@ public class Login implements Logica {
 		
 		if(usuario != null) {
 			HttpSession session = request.getSession();
+			
 			session.setMaxInactiveInterval(2 * 60);
 			session.setAttribute("status", true);
 			session.setAttribute("login", login);
 			session.setAttribute("perfil", usuario.getPerfil());
 			
-			return "menu-principal.jsp";
+			if(usuario.getPerfil().equalsIgnoreCase("admin"))
+				return "menu-cadastro.jsp";
+
+			else
+				return "menu-teste.jsp";
 		}
 		
-		return "login.jsp";
+		return "usuario-inexistente.jsp";
 	}
 }

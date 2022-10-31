@@ -54,8 +54,9 @@ public class UsuarioDAO {
 		} catch (SQLException e) {}		
 	}
 	
-	public Usuario rsToUsuario(ResultSet rs) throws SQLException {
+	private Usuario rsToUsuario(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
+		
 		usuario.setIdUsuario(rs.getLong("idusuario"));
 		usuario.setNome(rs.getString("nome"));
 		usuario.setSenha(rs.getString("senha"));
@@ -67,8 +68,24 @@ public class UsuarioDAO {
 	public Usuario recuperaUsuario(Usuario u) {
 		String sql = "select * from usuario where idusuario=?";
 		Usuario usuario = null;
+		
 		try (PreparedStatement stmt = connection.prepareStatement(sql)){
 			stmt.setLong(1, u.getIdUsuario());
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				usuario = rsToUsuario(rs);
+			}
+		} catch (SQLException e) {}
+		
+		return usuario;
+	}
+	
+	public Usuario recuperaUsuario(String nome) {
+		String sql = "select * from usuario where nome=?";
+		Usuario usuario = null;
+		
+		try (PreparedStatement stmt = connection.prepareStatement(sql)){
+			stmt.setString(1, nome);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				usuario = rsToUsuario(rs);

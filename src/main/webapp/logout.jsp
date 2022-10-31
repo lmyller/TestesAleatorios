@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${sessionScope.status != true}">
-		<jsp:forward page="login.jsp"/>
-	</c:if>
+	<form action="controladora" action="post" style="text-align: right;">
+		${sessionScope.login} <input type="hidden" name="logica" value="Logout">
+		<input type="submit" value="Logout">
+	</form> <br>
 </body>
 </html>

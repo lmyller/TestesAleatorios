@@ -23,6 +23,6 @@ public class CadastrarUsuario implements Logica {
 		
 		dao.adiciona(usuario);
 		
-		return "menu-principal.jsp";
+		return "menu-cadastro.jsp";
 	}
 }

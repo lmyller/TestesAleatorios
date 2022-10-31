@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${sessionScope.status != true || sessionScope.perfil != admin}">
-		<jsp:forward page="acesso-negado.jsp"></jsp:forward>
+	<c:if test="${sessionScope.status != true or sessionScope.perfil != 'admin'}">
+		<jsp:forward page="acesso-negado.jsp"/>
 	</c:if>
 </body>
 </html>

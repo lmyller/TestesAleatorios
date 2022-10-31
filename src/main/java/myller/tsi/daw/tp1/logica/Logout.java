@@ -13,7 +13,9 @@ public class Logout implements Logica{
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		session.invalidate();
+		
+		if(session != null)
+			session.invalidate();
 		
 		return "login.jsp";
 	}

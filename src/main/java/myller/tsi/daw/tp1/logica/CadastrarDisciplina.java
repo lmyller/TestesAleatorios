@@ -21,6 +21,6 @@ public class CadastrarDisciplina implements Logica{
 		
 		dao.adiciona(disciplina);
 		
-		return "menu-principal.jsp";
+		return "menu-cadastro.jsp";
 	}
 }

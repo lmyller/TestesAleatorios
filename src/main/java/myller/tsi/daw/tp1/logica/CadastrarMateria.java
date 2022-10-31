@@ -31,6 +31,6 @@ public class CadastrarMateria implements Logica {
 		
 		dao.adiciona(materia);
 		
-		return "menu-principal.jsp";
+		return "menu-cadastro.jsp";
 	}
 }
